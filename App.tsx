@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { WEEKLY_SCHEDULE } from './constants';
-import { LessonCard } from './components/LessonCard';
-import { DaySelector } from './components/DaySelector';
-import { StatsHeader } from './components/StatsHeader';
+import { WEEKLY_SCHEDULE } from './constants.tsx';
+import { LessonCard } from './components/LessonCard.tsx';
+import { DaySelector } from './components/DaySelector.tsx';
+import { StatsHeader } from './components/StatsHeader.tsx';
 import { LayoutGrid, List } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -12,29 +12,26 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const today = new Date().getDay(); 
-    const currentIdx = today === 0 ? 5 : today - 1; // 0 is Sunday, set to Saturday view
+    const currentIdx = today === 0 ? 5 : today - 1; 
     if (currentIdx < 6) {
       setSelectedDayIndex(currentIdx);
     }
   }, []);
 
-  // Dinamik hisob-kitoblar
   const stats = useMemo(() => {
-    let totalLessons = 0;
+    let totalLessonsCount = 0;
     const subjectsSet = new Set<string>();
 
     WEEKLY_SCHEDULE.forEach(day => {
-      totalLessons += day.lessons.length;
+      totalLessonsCount += day.lessons.length;
       day.lessons.forEach(lesson => {
-        // Fan nomini normallashtirish (bo'sh joylarni olib tashlash va kichik harfga o'tkazish)
-        // lekin ko'rsatishda original nomdan foydalanamiz
         subjectsSet.add(lesson.name.toLowerCase().trim());
       });
     });
 
     return {
-      totalLessons,
-      uniqueSubjects: subjectsSet.size
+      totalLessonsCount,
+      uniqueSubjectsCount: subjectsSet.size
     };
   }, []);
 
@@ -43,8 +40,8 @@ const App: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 md:py-12">
       <StatsHeader 
-        totalLessonsCount={stats.totalLessons} 
-        uniqueSubjectsCount={stats.uniqueSubjects} 
+        totalLessonsCount={stats.totalLessonsCount} 
+        uniqueSubjectsCount={stats.uniqueSubjectsCount} 
       />
       
       <div className="mb-10 sticky top-4 z-50">
@@ -102,7 +99,7 @@ const App: React.FC = () => {
 
       <footer className="mt-20 text-center pb-10">
         <div className="h-px w-24 bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto mb-6"></div>
-        <p className="text-slate-400 text-sm font-medium">
+        <p className="text-slate-400 text-sm font-medium uppercase tracking-widest">
           Sinfingiz uchun maxsus tayyorlandi &bull; 2024
         </p>
       </footer>

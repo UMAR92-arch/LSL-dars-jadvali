@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { Lesson } from '../types';
-import { SUBJECT_METADATA } from '../constants';
+import { Lesson } from '../types.ts';
+import { SUBJECT_METADATA } from '../constants.tsx';
 
 interface LessonCardProps {
   lesson: Lesson;

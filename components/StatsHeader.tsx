@@ -48,18 +48,18 @@ export const StatsHeader: React.FC<StatsHeaderProps> = ({ uniqueSubjectsCount, t
           </div>
         </div>
 
-        {/* Jami haftalik darslar */}
+        {/* Barcha darslar (jami soat) */}
         <div className="glass-card px-5 py-3 rounded-2xl flex items-center gap-3 shadow-sm border-white/40">
           <div className="bg-emerald-100 p-2.5 rounded-xl">
             <Layers className="text-emerald-600" size={20} />
           </div>
           <div>
-            <p className="text-[10px] uppercase font-bold text-slate-400 leading-none mb-1">Jami darslar</p>
+            <p className="text-[10px] uppercase font-bold text-slate-400 leading-none mb-1">Barcha darslar</p>
             <p className="text-lg font-bold text-slate-800">{totalLessonsCount} soat</p>
           </div>
         </div>
 
-        {/* Fanlar turlari */}
+        {/* Fan turlari (necha xil fan borligi) */}
         <div className="glass-card px-5 py-3 rounded-2xl flex items-center gap-3 shadow-sm border-white/40">
           <div className="bg-amber-100 p-2.5 rounded-xl">
             <BookOpen className="text-amber-600" size={20} />
