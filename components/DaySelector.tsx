@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { WEEKLY_SCHEDULE } from '../constants';
+import { WEEKLY_SCHEDULE } from '../constants.tsx';
 
 interface DaySelectorProps {
   currentDayIndex: number;

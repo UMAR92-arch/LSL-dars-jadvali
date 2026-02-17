@@ -2,8 +2,6 @@
 import React from 'react';
 import { 
   BookOpen, 
-  Binary, 
-  Globe, 
   Beaker, 
   Cpu, 
   Dribbble, 
@@ -12,7 +10,7 @@ import {
   Calculator,
   Languages
 } from 'lucide-react';
-import { DaySchedule, SubjectType } from './types';
+import { DaySchedule, SubjectType } from './types.ts';
 
 export const SUBJECT_METADATA: Record<SubjectType, { color: string; icon: React.ReactNode }> = {
   language: { color: 'bg-emerald-100 text-emerald-700 border-emerald-200', icon: <Languages size={18} /> },
@@ -27,30 +25,48 @@ export const SUBJECT_METADATA: Record<SubjectType, { color: string; icon: React.
 
 const getSubjectType = (name: string): SubjectType => {
   const lowerName = name.toLowerCase();
-  if (lowerName.includes('ona tili') || lowerName.includes('ingilis') || lowerName.includes('rus tili') || lowerName.includes('adabiyot')) return 'language';
-  if (lowerName.includes('algebra') || lowerName.includes('geometriya') || lowerName.includes('matematika')) return 'math';
-  if (lowerName.includes('fizika') || lowerName.includes('kimyo') || lowerName.includes('bialogiya')) return 'science';
+  if (
+    lowerName.includes('ona tili') || 
+    lowerName.includes('ingilis') || 
+    lowerName.includes('rus tili') || 
+    lowerName.includes('adabiyot')
+  ) return 'language';
+  
+  if (
+    lowerName.includes('matem') || 
+    lowerName.includes('algebra') || 
+    lowerName.includes('geometriya')
+  ) return 'math';
+  
+  if (
+    lowerName.includes('fizika') || 
+    lowerName.includes('kimyo') || 
+    lowerName.includes('bialogiya') ||
+    lowerName.includes('biologiya')
+  ) return 'science';
+  
   if (lowerName.includes('dasturlash')) return 'it';
-  if (lowerName.includes('jistar')) return 'sport';
-  if (lowerName.includes('tarix')) return 'history';
-  if (lowerName.includes('tex') || lowerName.includes('chiz')) return 'art';
+  if (lowerName.includes('jistar') || lowerName.includes('tarbiya')) return 'sport';
+  if (lowerName.includes('tarix') || lowerName.includes('huquq')) return 'history';
+  if (lowerName.includes('texchiz') || lowerName.includes('texnologiya')) return 'art';
+  
   return 'other';
 };
 
 const formatDay = (dayName: string, subjects: string[]): DaySchedule => ({
   dayName,
   lessons: subjects.map((name, index) => ({
-    id: `${dayName}-${index}`,
+    id: `${dayName}-${index}-${Math.random()}`,
     name,
     type: getSubjectType(name),
   })),
 });
 
 export const WEEKLY_SCHEDULE: DaySchedule[] = [
-  formatDay('Dushanba', ['Ona tili', 'Algebra', 'Ingliz tili', 'Biologiya', 'Ingliz tili', 'Ingliz tili kurs', 'O\'zbekiston tarixi', 'Kimyo']),
-  formatDay('Seshanba', ['Kimyo', 'Huquq', 'Tarbiya', 'Dasturlash', 'Dasturlash', 'Geometriya', 'Algebra', 'Ingliz tili kurs', 'Ingliz tili kurs']),
-  formatDay('Chorshanba', ['Jismoniy tarbiya', 'Jismoniy tarbiya', 'Fizika', 'Rus tili', 'Dasturlash', 'Dasturlash', 'Geometriya', 'Algebra']),
-  formatDay('Payshanba', ['Ingliz tili', 'Kimyo', 'Fizika', 'Kimyo', 'Ona tili', 'Rus tili', 'Adabiyot', 'Ingliz tili kurs', 'O\'zbekiston tarixi']),
-  formatDay('Juma', ['Ona tili', 'Ingliz tili', 'Dasturlash', 'Dasturlash', 'Ingliz tili', 'Ingliz tili kurs', 'Adabiyot']),
-  formatDay('Shanba', ['Texnologiya/Chizmachilik', 'Biologiya', 'Algebra', 'Geometriya', 'Matematika kurs', 'Matematika kurs', 'Ingliz tili', 'Ingliz tili']),
+  formatDay('Dushanba', ['Ona tili', 'Matematika', 'Ingliz tili', 'Biologiya', 'Ingliz tili', 'O\'zbekiston tarixi', 'Kimyo']),
+  formatDay('Seshanba', ['Ona tili', 'Tarbiya', 'Dasturlash', 'Matematika', 'Ingliz tili', 'Ingliz tili', 'Matematika']),
+  formatDay('Chorshanba', ['Jismoniy tarbiya', 'Jismoniy tarbiya', 'Fizika', 'Rus tili', 'Dasturlash', 'Matematika', 'Tarix']),
+  formatDay('Payshanba', ['Ingliz tili', 'Adabiyot', 'Fizika', 'Huquq', 'Rus tili', 'Ingliz tili', 'Tarix']),
+  formatDay('Juma', ['Ona tili', 'Ingliz tili', 'Dasturlash', 'Dasturlash', 'Ingliz tili', 'Ingliz tili', 'Adabiyot']),
+  formatDay('Shanba', ['Texnologiya/Chizmachilik', 'Biologiya', 'Matematika', 'Matematika', 'Matematika', 'Ingliz tili', 'Ingliz tili']),
 ];
