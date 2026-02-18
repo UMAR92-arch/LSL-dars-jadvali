@@ -12,17 +12,16 @@
     <style>
       body {
         font-family: 'Plus Jakarta Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        background: transparent; /* Fonni shaffof qildik */
       }
       .glass-card {
         background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-      }
-      .gradient-bg {
-        background: radial-gradient(circle at top left, #4f46e5, transparent),
-                    radial-gradient(circle at bottom right, #ec4899, transparent),
-                    #f3f4f6;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
       }
       .no-scrollbar::-webkit-scrollbar {
         display: none;
@@ -45,7 +44,7 @@
 }
 </script>
   </head>
-  <body class="gradient-bg min-h-screen text-slate-900">
+  <body>
     <div id="root"></div>
     <script type="module" src="index.tsx"></script>
   </body>
